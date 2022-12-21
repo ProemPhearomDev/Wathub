@@ -13,7 +13,7 @@
                             <a href="{{ route('user.profile') }}"><i class="fe fe-user-plus"></i> <span>Profile</span></a>
                         </li> --}}
                         <li id="menu_setting_monk">
-                            <a href="#"><i class="fe fe-user"></i> <span> គ្រប់គ្រងការស្នាក់នៅ</span> <span
+                            <a href="#"><i class="fe fe-user"></i> <span> គ្រប់គ្រងស្នាក់នៅ</span> <span
                                     class="menu-arrow"></span></a>
                             <ul class="sidebar-menu" id="setting_collapse_monk">
                                 <li id="menu_manage_monk"><a href="{{ route('all.monk') }}"> ព្រះសង្ឃ </a></li>
@@ -37,7 +37,7 @@
                                     <a href="{{ route('all.income') }}"><span>ចំណូល</span></a>
                                 </li>
                                 <li id="menu_manage_money">
-                                    <a href=""> <span>ចំណាយ</span></a>
+                                    <a href="{{ route('all.expense') }}"> <span>ចំណាយ</span></a>
                                 </li>
                             </ul>
                         </li>

@@ -18,7 +18,10 @@
 
             <div class="row">
                 <div class="col-sm-12">
-
+                    <div class="mb-2">
+                        <a href="{{ route('user.create') }}" class="btn btn-md btn-success mb-2"><i class="fe fe-plus">
+                                បង្កើតអ្នកប្រើប្រាស់</i></a>
+                    </div>
                     <div class="card card-table">
                         <div class="card-header">
 

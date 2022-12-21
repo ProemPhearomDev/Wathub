@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Database\Eloquent\Model; 
 class UserController extends Controller
 {
     //
@@ -15,6 +15,10 @@ class UserController extends Controller
     {
         $users = User::latest()->paginate(5);
         return view('Frontend-Layout.users.index', compact('users'))->with('i');
+    }
+    // add user
+    public function CreateUser(){
+        return view('Frontend-Layout.users.create');
     }
     //DELETE
     public function UserDelete($id){

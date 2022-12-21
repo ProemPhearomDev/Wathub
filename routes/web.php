@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Frontend\ComissionController;
+use App\Http\Controllers\Frontend\ExpenseController;
 use App\Http\Controllers\Frontend\IncomeController;
 use App\Http\Controllers\Frontend\MonkController;
 use App\Http\Controllers\Frontend\UserController;
@@ -49,8 +50,8 @@ Route::middleware([
 Route::middleware(['auth:sanctum', 'web', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         // profile user show in userdashboard and edit
-        $id = Auth::user()->id;
-        $user = User::find($id);
+        // $id = Auth::user()->id;
+        // $user = User::find($id);
         return view('dashboard');
     })->name('dashboard');
 });
@@ -73,7 +74,8 @@ Route::post('/user/change/update', [IndexController::class, 'UserUpdatePassword'
 // User info
 Route::prefix('user')->group(function () {
     Route::get('/view/user', [UserController::class, 'ViewUser'])->name('all.user');
-    // Route::post('/store', [BrandController::class, 'BrandStore'])->name('brand.store');
+    Route::get('/create/new/user', [UserController::class, 'CreateUser'])->name('user.create');
+    // Route::post('/store', [UserController::class, 'UserStore'])->name('user.create');
     // Route::get('/edit/{id}', [BrandController::class, 'BrandEdit'])->name('brand.edit');
     // Route::post('/update/{id}', [BrandController::class, 'BrandUpdate'])->name('brand.update');
     Route::get('/delete/{id}', [UserController::class, 'UserDelete'])->name('user.delete');
@@ -130,13 +132,13 @@ Route::prefix('incomes')->group(function () {
     Route::post('/update/{id}', [IncomeController::class, 'IncomeUpdate'])->name('income.update');
     Route::get('/delete/{id}', [IncomeController::class, 'IncomeDelete'])->name('income.delete');
 });
-// Route::prefix('villages')->group(function () {
-//     Route::get('/view/village', [VillageController::class, 'ViewVillage'])->name('all.village');
-//     Route::get('/create/village', [VillageController::class, 'CreateVillage'])->name('village.create');
-//     Route::post('/store/village', [VillageController::class, 'StoreVillage'])->name('village.store');
-//     Route::get('/edit/{id}', [VillageController::class, 'VillageEdit'])->name('village.edit');
-//     Route::post('/update/{id}', [VillageController::class, 'VillageUpdate'])->name('village.update');
-//     Route::get('/delete/{id}', [VillageController::class, 'VillageDelete'])->name('village.delete');
-// });
+Route::prefix('expense')->group(function () {
+    Route::get('/view/expense', [ExpenseController::class, 'ViewExpense'])->name('all.expense');
+    Route::get('/create/expense', [ExpenseController::class, 'CreateExpense'])->name('expense.create');
+    Route::post('/store/expense', [ExpenseController::class, 'StoreExpense'])->name('expense.store');
+    Route::get('/edit/{id}', [ExpenseController::class, 'ExpenseEdit'])->name('expense.edit');
+    Route::post('/update/{id}', [ExpenseController::class, 'ExpenseUpdate'])->name('expense.update');
+    Route::get('/delete/{id}', [ExpenseController::class, 'ExpenseDelete'])->name('expense.delete');
+});
 // ----------------Route for Search -----------------------
 Route::get('/search/user', [UserController::class, 'UserSearch']);

@@ -30,7 +30,7 @@
                         <div class="row">
                             <div class="col">
 
-                                <div class="card-body rounded">
+                                <div class="card-body rounded shadow-1">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">

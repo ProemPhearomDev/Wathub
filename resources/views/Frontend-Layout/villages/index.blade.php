@@ -10,7 +10,7 @@
                         <h3 class="page-title">តារាងបញ្ជីភូមិផ្សេងៗ </h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Village</li>
+                            <li class="breadcrumb-item active">ភូមិ</li>
                         </ul>
                     </div>
                 </div>

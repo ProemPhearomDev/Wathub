@@ -90,8 +90,11 @@
                                 <div class="card-body rounded">
                                     <div class="form-group">
                                         <label>អាសយដ្ឋាន</label>
-                                        <textarea class="form-control" id="address" name="address" value="{{ old('address') }}"
-                                            placeholder="សូមបញ្ចូលអាសយដ្ឋាន"></textarea>
+                                        <select class="form-control form-select" name="village_id">
+                                            @foreach ($villages as $village)
+                                                <option value="{{ $village->id }}">{{ $village->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label>តួនាទី<span class="text-danger">*</span></label>
@@ -108,19 +111,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label>ស្ថានភាព<span class="text-danger">*</span></label>
-                                        <select class="form-control select" name="status" id="status">
-                                            <option selected value="">ជ្រើសរើសស្ថានភាព </option>
-                                            <option>នៅធ្វើ</option>
-                                            <option>ឈប់ធ្វើ</option>
-                                        </select>
-                                        @error('status')
-                                            <div class="form-error text-danger">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
+
                                     <div class="form-group">
                                         <label>លេខទូរស័ព្ទ</label>
                                         <input type="text" class="form-control" id="phone" name="phone"

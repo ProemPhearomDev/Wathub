@@ -35,8 +35,9 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <label>ចំណាយលើ <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="expense_name" name="expense_name"
-                                                    value="{{ old('expense_name') }}" placeholder="បញ្ចូលបច្ច័យដែលចំណាយ">
+                                                <input type="text" class="form-control" id="expense_name"
+                                                    name="expense_name" value="{{ old('expense_name') }}"
+                                                    placeholder="បញ្ចូលបច្ច័យដែលចំណាយ">
                                                 @error('expense_name')
                                                     <div class="form-error text-danger">
                                                         {{ $message }}
@@ -50,11 +51,20 @@
                                         <input type="date" class="form-control" id="date_expense" name="date_expense"
                                             value="{{ old('date_expense') }}">
                                     </div>
+                                    <label class="input-group" for="">ចំនួនប្រាក់</label>
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text">ចំនួន</span>
-                                        <input type="text" class="form-control" name="amounts" value="{{ old('amounts ') }}">
+                                        <span class="input-group-text">៛</span>
+                                        <input type="text" class="form-control" name="amounts_kh"
+                                            value="{{ old('amounts_kh ') }}">
                                         <span class="input-group-text">.00</span>
-                                      </div>
+                                    </div>
+                                    <label class="input-group" for="">ចំនួនប្រាក់</label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">$</span>
+                                        <input type="text" class="form-control" name="amounts_usd"
+                                            value="{{ old('amounts_usd ') }}">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
                                     <div class="form-group">
                                         <label>បរិយាយផ្សេងៗ</label>
                                         <textarea rows="4" class="form-control" id="note" name="note" value="{{ old('note') }}"></textarea>

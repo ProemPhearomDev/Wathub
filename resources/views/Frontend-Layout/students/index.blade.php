@@ -63,14 +63,19 @@
                                             <td>{{ $student->role }}</td>
                                             <td>{{ $student->phone }}</td>
                                             <td>
-                                                @if ($student->status == "ស្នាក់នៅ")
-                                                <span class="badge badge-pill bg-success inv-badge">{{ $student->status }}</span>
+                                                @if ($student->status == 1)
+                                                <span class="badge badge-pill bg-success inv-badge">ស្នាក់នៅ</span>
                                                 @else
-                                                <span class="badge badge-pill bg-danger inv-badge">{{ $student->status }}</span>
+                                                    <span class="badge badge-pill bg-danger inv-badge">ចាកចេញ</span>
                                                 @endif
                                             </td>
                                             <td>{{ $student->note }}</td>
                                             <td class="text-right" >
+                                                @if ($student->status == 1)
+                                                <a href="{{ route('student.active', $student->id) }}"  class="btn btn-sm btn-oval btn-success mx-2"  title="Inactive Now"><i class="fa fa-eye"></i></a> 
+                                                @else
+                                                <a href="{{ route('student.inactive', $student->id) }}"  class="btn btn-sm btn-oval btn-danger mx-2" title="Active Now"><i class="fa fa-eye-slash"></i></a> 
+                                                @endif
                                                 <a href="{{ route('student.edit', $student->id) }}" class="btn btn-primary btn-sm mb-1">
                                                     <i class="fe fe-edit"></i>
                                                 </a>
@@ -97,7 +102,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div id="delete_monk" class="modal" role="dialog">
+                {{-- <div id="delete_student" class="modal" role="dialog">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content modal-md">
                             <div class="modal-header">

@@ -33,7 +33,8 @@
                                         <th>ចំណាយលើ</th>
                                         {{-- <th>អាសយដ្ឋាន</th> --}}
                                         <th>ថ្ងៃចំណាយ</th>
-                                        <th>ចំនួនប្រាក់</th>
+                                        <th>ចំនួនប្រាក់រៀល</th>
+                                        <th>ចំនួនប្រាក់ដុល្លា</th>
                                         {{-- <th>លេខទូរស័ព្ទ</th> --}}
                                         <th>ផ្សេងៗ</th>
                                         <th>សកម្មភាព</th>
@@ -49,10 +50,15 @@
                                             <td>
                                                 {{ \Carbon\Carbon::parse($expense['date_expense'])->format('d-m-Y') }}
                                             </td>
-                                            @if ($expense->amounts != null)
-                                                <td>{{ $expense->amounts }} </td>
+                                            @if ($expense->amounts_kh != null)
+                                                <td>៛{{ $expense->amounts_kh }} </td>
                                             @else
-                                                <td>0.00</td>
+                                                <td>៛0.00</td>
+                                            @endif
+                                            @if ($expense->amounts_usd != null)
+                                                <td>${{ $expense->amounts_usd }} </td>
+                                            @else
+                                                <td>$0.00</td>
                                             @endif
 
                                             {{-- @if ($expense->amount_usd != null)
@@ -80,16 +86,15 @@
                                         @endphp --}}
                                     @endforeach
                                 </tbody>
-                                
-                                {{-- <tfoot>
+
+                                <tfoot>
                                     <tr>
-                                        <th colspan="4"></th>
-                                        <th>ប្រាក់ខ្មែរសរុប = </th>
-                                        <th>៛</th>
-                                        <th>ប្រាក់ដុល្លាសរុប = </th>
-                                        <th>$</th>
+                                        <th colspan="3"></th>
+                                        {{-- <th></th> --}}
+                                        <th>សរុប={{ $expense_khtotal }}៛</th>
+                                        <th>សរុប={{ $expense_usdtotal }}$</th>
                                     </tr>
-                                </tfoot> --}}
+                                </tfoot>
                             </table>
                         </div>
                     </div>

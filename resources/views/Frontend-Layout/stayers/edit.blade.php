@@ -120,19 +120,7 @@
                                     </div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label>ស្ថានភាព<span class="text-danger">*</span></label>
-                                    <select class="form-control select" name="status" id="status">
-                                        <option selected="" disabled="" value="" disabled>ជ្រើសរើសតួនាទី </option>
-                                        <option value="ស្នាក់នៅ" {{ $stayer->status == 'ស្នាក់នៅ' ? 'selected' : '' }} >ស្នាក់នៅ</option>
-                                        <option value="ចាកចេញ"{{ $stayer->status == 'ចាកចេញ' ? 'selected' : '' }}>ចាកចេញ</option>
-                                    </select>
-                                    @error('status')
-                                    <div class="form-error text-danger">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
+                        
                                 <div class="form-group">
                                     <label>លេខទូរស័ព្ទ</label>
                                     <input type="text" class="form-control" id="phone" name="phone"

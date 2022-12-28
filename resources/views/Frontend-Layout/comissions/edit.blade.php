@@ -101,7 +101,13 @@
                                 <div class="card-body rounded">
                                     <div class="form-group">
                                         <label>ទីកន្លែងកំណើត</label>
-                                        <textarea class="form-control" id="address" name="address">{{ $comission->address }}</textarea>
+                                        <select class="form-control form-select" name="village_id">
+                                            @foreach ($villages as $village)                  
+                                            <option value="{{ $village->id }}"
+                                                {{ $village->village_id === $village->id ? 'selected' : '' }}>{{ $village->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label>តួនាទី</label>
@@ -116,22 +122,6 @@
                                         <input type="text" class="form-control" name="role" id="role"
                                             placeholder="សូមបញ្ចូលតួនាទី" value="{{ $comission->role }}">
 
-                                    </div>
-                                    <div class="form-group">
-                                        <label>ស្ថានភាព<span class="text-danger">*</span></label>
-                                        <select class="form-control select" name="status" id="status">
-                                            <option selected="" disabled="" value="" disabled>ជ្រើសរើសតួនាទី
-                                            </option>
-                                            <option value="នៅធ្វើ" {{ $comission->status == 'នៅធ្វើ' ? 'selected' : '' }}>
-                                                នៅធ្វើ</option>
-                                            <option value="ឈប់ធ្វើ"{{ $comission->status == 'ឈប់ធ្វើ' ? 'selected' : '' }}>
-                                                ឈប់ធ្វើ</option>
-                                        </select>
-                                        @error('status')
-                                            <div class="form-error text-danger">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label>លេខទូរស័ព្ទ</label>

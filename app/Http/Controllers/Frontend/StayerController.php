@@ -31,7 +31,7 @@ class StayerController extends Controller
             'old' => '',
             'address' => '',
             'role' => 'required',
-            'status' => 'required',
+            'status' => '',
             'phone' => '',
             'note' => '',
             'stayer_image' => 'required',
@@ -39,7 +39,6 @@ class StayerController extends Controller
             'name.required' => 'សូមបញ្ចូលឈ្មោះ!',
             'dob.required' => 'សូមបញ្ចូលឈ្មោះ!',
             'role.required' => 'សូមបញ្ចូលតួនាទី!',
-            'status.required' => 'សូមបញ្ចូលស្ថានភាព!',
             'stayer_image.required' => 'សូមបញ្ចូលរូបភាព!',
         ]);
 
@@ -57,7 +56,7 @@ class StayerController extends Controller
             'old' => $request->old,
             'address' => $request->address,
             'role' => $request->role,
-            'status' => $request->status,
+            'status' => 1,
             'phone' => $request->phone,
             'note' => $request->note,
             // 'brand_slug_en' => strtolower(str_replace(' ', '-', $request->brand_slug_en)),
@@ -72,13 +71,13 @@ class StayerController extends Controller
 
         return redirect()->route('all.stayer')->with($notification);
     }
-     // edit
-     public function StayerEdit($id)
-     {
-         $stayer = Stayer::FindOrFail($id);
-         return view('Frontend-Layout.stayers.edit', compact('stayer'));
-     }
-     public function StayerUpdate(Request $request)
+    // edit
+    public function StayerEdit($id)
+    {
+        $stayer = Stayer::FindOrFail($id);
+        return view('Frontend-Layout.stayers.edit', compact('stayer'));
+    }
+    public function StayerUpdate(Request $request)
     {
         $stayer_id = $request->id;
         $old_img = $request->old_image;
@@ -93,7 +92,7 @@ class StayerController extends Controller
                 'old' => 'required',
                 'address' => '',
                 'role' => 'required',
-                'status' => 'required',
+                'status' => '',
                 'phone' => '',
                 'note' => '',
                 'stayer_image' => 'required',
@@ -101,7 +100,6 @@ class StayerController extends Controller
                 'name.required' => 'សូមបញ្ចូលឈ្មោះ!',
                 'dob.required' => 'សូមបញ្ចូលថ្ងៃ-ខែ-ឆ្នាំកំណើត!',
                 'role.required' => 'សូមបញ្ចូលតួនាទី!',
-                'status.required' => 'សូមបញ្ចូលស្ថានភាព!',
                 'stayer_image.required' => 'សូមបញ្ចូលរូបភាព!',
             ]);
             @unlink($old_img);
@@ -119,7 +117,7 @@ class StayerController extends Controller
                 'old' => $request->old,
                 'address' => $request->address,
                 'role' => $request->role,
-                'status' => $request->status,
+                'status' => 1,
                 'phone' => $request->phone,
                 'note' => $request->note,
                 'stayer_image' => $save_url,
@@ -145,7 +143,7 @@ class StayerController extends Controller
                 'old' => $request->old,
                 'address' => $request->address,
                 'role' => $request->role,
-                'status' => $request->status,
+                'status' => 1,
                 'phone' => $request->phone,
                 'note' => $request->note,
             ]);
@@ -158,6 +156,30 @@ class StayerController extends Controller
 
             return redirect()->route('all.stayer')->with($notification);
         }
+    }
+    // // Active
+    public function Active($id)
+    {
+        Stayer::findOrFail($id)->update(['status' => 0]);
+
+        //alert toastr msg
+        $notification = array(
+            'message' => "update Successfully",
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+    // // Active
+    public function Inactive($id)
+    {
+        Stayer::findOrFail($id)->update(['status' => 1]);
+
+        //alert toastr msg
+        $notification = array(
+            'message' => "update Successfully",
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
     // Delete
     public function StayerDelete($id)

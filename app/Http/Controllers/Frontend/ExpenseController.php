@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Expense;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class ExpenseController extends Controller
@@ -12,8 +13,11 @@ class ExpenseController extends Controller
     public function ViewExpense()
     {
         $expenses = Expense::latest()->get();
-        return view('Frontend-Layout.expense.index', compact('expenses'))->with('i');
+        $expense_khtotal = DB::table('expenses')->sum('amounts_kh');
+        $expense_usdtotal = DB::table('expenses')->sum('amounts_usd');
+        return view('Frontend-Layout.expense.index', compact('expenses','expense_khtotal','expense_usdtotal'))->with('i');
     }
+
     public function CreateExpense()
     {
         return view('Frontend-Layout.expense.create');
@@ -24,7 +28,8 @@ class ExpenseController extends Controller
             [
                 'expense_name' => 'required',
                 'date_expense' => '',
-                'amounts' => 'required',
+                'amounts_kh' => '',
+                'amounts_usd' => '',
                 'note' => '',
             ],
             [
@@ -35,7 +40,8 @@ class ExpenseController extends Controller
         Expense::insert([
             'expense_name' => $request->expense_name,
             'date_expense' => $request->date_expense,
-            'amounts' => $request->amounts,
+            'amounts_kh' => $request->amounts_kh,
+            'amounts_usd' => $request->amounts_usd,
             'note' => $request->note,
         ]);
 
@@ -58,7 +64,8 @@ class ExpenseController extends Controller
             [
                 'expense_name' => 'required',
                 'date_expense' => '',
-                'amounts' => 'required',
+                'amounts_kh' => '',
+                'amounts_usd' => '',
                 'note' => '',
             ],
             [
@@ -69,7 +76,8 @@ class ExpenseController extends Controller
         Expense::FindOrFail($expense_id)->update([
             'expense_name' => $request->expense_name,
             'date_expense' => $request->date_expense,
-            'amounts' => $request->amounts,
+            'amounts_kh' => $request->amounts_kh,
+            'amounts_usd' => $request->amounts_usd,
             'note' => $request->note,
         ]);
         //alert toast msg
@@ -81,7 +89,8 @@ class ExpenseController extends Controller
     }
     public function ExpenseDelete($id)
     {
-        $expenses = Expense::find($id)->delete();
+        $expenses = Expense::find($id);
+        $expenses->delete();
         //alert toast msg
         $notification = array(
             'message' => "Expense Deleted Successfully",

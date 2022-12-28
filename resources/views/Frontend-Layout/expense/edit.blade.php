@@ -52,9 +52,16 @@
                                             value="{{ $expense->date_expense }}">
                                     </div>
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text">ចំនួន</span>
-                                        <input type="text" class="form-control" name="amounts"
-                                            value="{{ $expense->amounts }}">
+                                        <span class="input-group-text">៛</span>
+                                        <input type="text" class="form-control" name="amounts_kh"
+                                            value="{{ $expense->amounts_kh }}">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                    <label class="input-group" for="">ចំនួនប្រាក់</label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">$</span>
+                                        <input type="text" class="form-control" name="amounts_usd"
+                                            value="{{ $expense->amounts_usd }}">
                                         <span class="input-group-text">.00</span>
                                     </div>
                                     <div class="form-group">

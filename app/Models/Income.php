@@ -18,4 +18,6 @@ class Income extends Model
         // 'phone',
         'note',
     ];
+
+    
 }

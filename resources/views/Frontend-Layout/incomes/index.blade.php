@@ -55,13 +55,13 @@
                                             @if ($income->amount_riels != null)
                                                 <td>{{ $income->amount_riels }} ៛</td>
                                             @else
-                                                <td>0.00៛</td>
+                                                <td>៛0.00</td>
                                             @endif
 
                                             @if ($income->amount_usd != null)
                                                 <td>{{ $income->amount_usd }} $</td>
                                             @else
-                                                <td>0.00$</td>
+                                                <td>$0.00</td>
                                             @endif
                                             <td>{{ $income->note }}</td>
                                             <td class="text-right">
@@ -83,14 +83,18 @@
                                         @endphp --}}
                                     @endforeach
                                 </tbody>
-                                
+                                <?php
+                                // $totalusd = $income->amount_usd +=  $income->amount_usd 
+                                ?>
+                                <?php
+                                // $totalriel = $income->amount_riels +=  $income->amount_riels 
+                                ?>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="4"></th>
-                                        <th>ប្រាក់ខ្មែរសរុប = </th>
-                                        <th>៛</th>
-                                        <th>ប្រាក់ដុល្លាសរុប = </th>
-                                        <th>$</th>
+                                        <th colspan="5"></th>
+                                        {{-- <th></th> --}}
+                                        <th>សរុប={{ $income_khtotal }}៛</th>
+                                        <th>សរុប={{ $income_usdtotal }}$</th>
                                     </tr>
                                 </tfoot>
                             </table>

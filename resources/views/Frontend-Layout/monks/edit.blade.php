@@ -116,7 +116,7 @@
                                     </div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label>ស្ថានភាព<span class="text-danger">*</span></label>
                                     <select class="form-control select" name="status" id="status">
                                         <option selected="" disabled="" value="" disabled>ជ្រើសរើសតួនាទី </option>
@@ -129,7 +129,7 @@
                                         {{ $message }}
                                     </div>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label>លេខទូរស័ព្ទ</label>
                                     <input type="text" class="form-control" id="phone" name="phone"

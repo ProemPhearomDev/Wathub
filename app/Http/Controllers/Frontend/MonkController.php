@@ -33,7 +33,7 @@ class MonkController extends Controller
             'old' => '',
             'address' => '',
             'role' => 'required',
-            'status' => 'required',
+            'status' => '',
             'phone' => '',
             'note' => '',
             'monk_image' => 'required',
@@ -41,7 +41,6 @@ class MonkController extends Controller
             'name.required' => 'សូមបញ្ចូលឈ្មោះ!',
             'dob.required' => 'សូមបញ្ចូលឈ្មោះ!',
             'role.required' => 'សូមបញ្ចូលតួនាទី!',
-            'status.required' => 'សូមបញ្ចូលស្ថានភាព!',
             'monk_image.required' => 'សូមបញ្ចូលរូបភាព!',
         ]);
 
@@ -58,7 +57,7 @@ class MonkController extends Controller
             'old' => $request->old,
             'address' => $request->address,
             'role' => $request->role,
-            'status' => $request->status,
+            'status' => 1,
             'phone' => $request->phone,
             'note' => $request->note,
             // 'brand_slug_en' => strtolower(str_replace(' ', '-', $request->brand_slug_en)),
@@ -93,7 +92,7 @@ class MonkController extends Controller
                 'old' => 'required',
                 'address' => '',
                 'role' => 'required',
-                'status' => 'required',
+                'status' => '',
                 'phone' => '',
                 'note' => '',
                 'monk_image' => 'required',
@@ -101,7 +100,6 @@ class MonkController extends Controller
                 'name.required' => 'សូមបញ្ចូលឈ្មោះ!',
                 'dob.required' => 'សូមបញ្ចូលថ្ងៃ-ខែ-ឆ្នាំកំណើត!',
                 'role.required' => 'សូមបញ្ចូលតួនាទី!',
-                'status.required' => 'សូមបញ្ចូលស្ថានភាព!',
                 'monk_image.required' => 'សូមបញ្ចូលរូបភាព!',
             ]);
             @unlink($old_img);
@@ -118,7 +116,7 @@ class MonkController extends Controller
                 'old' => $request->old,
                 'address' => $request->address,
                 'role' => $request->role,
-                'status' => $request->status,
+                'status' => 1,
                 'phone' => $request->phone,
                 'note' => $request->note,
                 'monk_image' => $save_url,
@@ -143,7 +141,7 @@ class MonkController extends Controller
                 'old' => $request->old,
                 'address' => $request->address,
                 'role' => $request->role,
-                'status' => $request->status,
+                'status' =>1,
                 'phone' => $request->phone,
                 'note' => $request->note,
             ]);
@@ -156,6 +154,28 @@ class MonkController extends Controller
 
             return redirect()->route('all.monk')->with($notification);
         }
+    }
+    // // Active
+    public function Active($id){
+        Monk::findOrFail($id)->update(['status' => 0]);
+
+         //alert toastr msg
+         $notification = array(
+            'message' => "Monk is update Successfully",
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+    // // Active
+    public function Inactive($id){
+        Monk::findOrFail($id)->update(['status' => 1]);
+
+         //alert toastr msg
+         $notification = array(
+            'message' => "Monk is update Successfully",
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
     // Delete
     public function MonkDelete($id)
@@ -175,4 +195,6 @@ class MonkController extends Controller
 
         return redirect()->route('all.monk')->with($notification);
     }
+
+      
 }

@@ -1,111 +1,216 @@
 @extends('Frontend-Layout.main_master')
 @section('content')
-   <!-- Page Wrapper -->
-   <div class="page-wrapper">
+    <!-- Page Wrapper -->
+    <div class="page-wrapper">
 
-    <div class="content container-fluid">
+        <div class="content container-fluid">
 
-        <!-- Page Header -->
-        <div class="page-header">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3 class="page-title">Welcome <strong>{{ Auth::user()->name }}</strong>!</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /Page Header -->
+
             <div class="row">
-                <div class="col-sm-12">
-                    <h3 class="page-title">Welcome <strong>{{ Auth::user()->name }}</strong>!</h3>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item active">Dashboard</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- /Page Header -->
-
-        <div class="row">
-            <div class="col-xl-3 col-sm-6 col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="dash-widget-header">
-                            <span class="dash-widget-icon bg-primary">
-                                <i class="fe fe-users"></i>
-                            </span>
-                            <div class="dash-count">
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <a href="{{ route('all.monk') }}">
+                            <div class="card-body">
+                                <div class="dash-widget-header">
+                                    <span class="dash-widget-icon bg-info">
+                                        <i class="fe fe-users"></i>
+                                    </span>
+                                    {{-- <div class="dash-count">
                                 <i class="fa fa-arrow-up text-success"></i> 17%
+                            </div> --}}
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h3>{{ $monk_counts }}</h3>
+                                    <h6 class="text-muted">ព្រះសង្ឃសរុប</h6>
+                                </div>
                             </div>
-                        </div>
-                        <div class="dash-widget-info">
-                            <h3>168</h3>
-                            <h6 class="text-muted">Customers</h6>
-                            <div class="progress progress-sm">
-                                <div class="progress-bar bg-primary w-50"></div>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="dash-widget-header">
-                            <span class="dash-widget-icon bg-success">
-                                <i class="fe fe-money"></i>
-                            </span>
-                            <div class="dash-count">
-                                <i class="fa fa-arrow-down text-danger"></i> 12%
-                            </div>
-                        </div>
-                        <div class="dash-widget-info">
-                            <h3>21587</h3>
-                            <h6 class="text-muted">Products</h6>
-                            <div class="progress progress-sm">
-                                <div class="progress-bar bg-success w-50"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="dash-widget-header">
-                            <span class="dash-widget-icon bg-danger">
-                                <i class="fe fe-credit-card"></i>
-                            </span>
-                            <div class="dash-count">
-                                <i class="fa fa-arrow-down text-danger"></i> 12%
-                            </div>
-                        </div>
-                        <div class="dash-widget-info">
-                            <h3>$56485</h3>
-                            <h6 class="text-muted">Sales</h6>
-                            <div class="progress progress-sm">
-                                <div class="progress-bar bg-danger w-50"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="dash-widget-header">
-                            <span class="dash-widget-icon bg-warning">
-                                <i class="fe fe-folder"></i>
-                            </span>
-                            <div class="dash-count">
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <a href="{{ route('all.stayer') }}">
+                            <div class="card-body">
+                                <div class="dash-widget-header">
+                                    <span class="dash-widget-icon bg-primary">
+                                        <i class="fe fe-users"></i>
+                                    </span>
+                                    {{-- <div class="dash-count">
                                 <i class="fa fa-arrow-up text-success"></i> 17%
+                            </div> --}}
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h3>{{ $stayer_count }}</h3>
+                                    <h6 class="text-muted">ឧបាសក/ឧបាសិកាស្នាក់នៅសរុប</h6>
+                                </div>
                             </div>
-                        </div>
-                        <div class="dash-widget-info">
-                            <h3>$62523</h3>
-                            <h6 class="text-muted">Revenue</h6>
-                            <div class="progress progress-sm">
-                                <div class="progress-bar bg-warning w-50"></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <a href="{{ route('all.student') }}">
+                            <div class="card-body">
+                                <div class="dash-widget-header">
+                                    <span class="dash-widget-icon bg-primary">
+                                        <i class="fe fe-users"></i>
+                                    </span>
+                                    {{-- <div class="dash-count">
+                                <i class="fa fa-arrow-up text-success"></i> 17%
+                            </div> --}}
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h3>{{ $student_count }}</h3>
+                                    <h6 class="text-muted">កូនសេក្ខ/កូនសិស្សសរុប</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <a href="{{ route('all.comission') }}">
+                            <div class="card-body">
+                                <div class="dash-widget-header">
+                                    <span class="dash-widget-icon bg-success">
+                                        <i class="fe fe-users"></i>
+                                    </span>
+                                    {{-- <div class="dash-count">
+                                <i class="fa fa-arrow-up text-success"></i> 17%
+                            </div> --}}
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h3>{{ $commision_count }}</h3>
+                                    <h6 class="text-muted">គណៈកម្មការវត្តសរុបទាំងអស់</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <a href="{{ route('all.invite') }}">
+                            <div class="card-body">
+                                <div class="dash-widget-header">
+                                    <span class="dash-widget-icon bg-success">
+                                        <i class="fe fe-bookmark"></i>
+                                    </span>
+                                    {{-- <div class="dash-count">
+                                <i class="fa fa-arrow-up text-success"></i> 17%
+                            </div> --}}
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h3>{{ $invite_count }}</h3>
+                                    <h6 class="text-muted">
+                                    ការនិមន្តបុណ្យសរុបទាំងអស់</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <a href="{{ route('all.user') }}">
+                            <div class="card-body">
+                                <div class="dash-widget-header">
+                                    <span class="dash-widget-icon bg-dark">
+                                        <i class="fe fe-user-plus"></i>
+                                    </span>
+                                    {{-- <div class="dash-count">
+                                <i class="fa fa-arrow-up text-success"></i> 17%
+                            </div> --}}
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h3>{{ $user_count }}</h3>
+                                    <h6 class="text-muted">
+                                    អ្នកប្រើប្រាស់សរុបទាំងអស់</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <a href="{{ route('all.income') }}">
+                            <div class="card-body">
+                                <div class="dash-widget-header">
+                                    <span class="dash-widget-icon bg-success">
+                                        {{-- <i class="fa fa-usd"></i> --}}
+                                        ៛
+                                    </span>
+                                    {{-- <div class="dash-count">
+                                <i class="fa fa-arrow-up text-success"></i> 17%
+                            </div> --}}
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h3>{{ $income_khtotal }} ៛</h3>
+                                    <h6 class="text-muted">
+                                    ចំណូលចំនួនលុយខ្មែរសរុប</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <a href="{{ route('all.income') }}">
+                            <div class="card-body">
+                                <div class="dash-widget-header">
+                                    <span class="dash-widget-icon bg-success">
+                                        <i class="fa fa-usd"></i>
+                                    </span>
+                                    {{-- <div class="dash-count">
+                                <i class="fa fa-arrow-up text-success"></i> 17%
+                            </div> --}}
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h3>{{ $income_usdtotal }} $</h3>
+                                    <h6 class="text-muted">
+                                        ចំណូលចំនួនលុយដុល្លាសរុប</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            
+                
+                {{-- <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="dash-widget-header">
+                                <span class="dash-widget-icon bg-warning">
+                                    <i class="fe fe-folder"></i>
+                                </span>
+                                <div class="dash-count">
+                                    <i class="fa fa-arrow-up text-success"></i> 17%
+                                </div>
+                            </div>
+                            <div class="dash-widget-info">
+                                <h3>$62523</h3>
+                                <h6 class="text-muted">Revenue</h6>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-warning w-50"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
-        </div>
 
-        <div class="row">
+            {{-- <div class="row">
             <div class="col-md-12 col-lg-6">
 
                 <!-- Sales Chart -->
@@ -134,9 +239,9 @@
                 <!-- /Invoice Chart -->
 
             </div>
-        </div>
+        </div> --}}
 
-        <div class="row">
+            {{-- <div class="row">
             <div class="col-md-6 d-flex">
 
                 <!-- Recent Orders -->
@@ -270,15 +375,15 @@
                 <!-- /Feed Activity -->
 
             </div>
+        </div> --}}
         </div>
     </div>
-</div>
-<!-- /Page Wrapper -->
-<script>
-    $(document).ready(function() {
+    <!-- /Page Wrapper -->
+    <script>
+        $(document).ready(function() {
             $("#sidebar-menu").removeClass('active');
             // $("#menu_setting_dashboard li").removeClass('active');
             $("#menu_setting_dashboard").addClass('active open');
         })
-</script>
+    </script>
 @endsection

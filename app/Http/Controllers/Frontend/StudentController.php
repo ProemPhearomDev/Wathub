@@ -31,7 +31,7 @@ class StudentController extends Controller
             'old' => '',
             'address' => '',
             'role' => 'required',
-            'status' => 'required',
+            'status' => '',
             'phone' => '',
             'note' => '',
             'student_image' => 'required',
@@ -39,7 +39,6 @@ class StudentController extends Controller
             'name.required' => 'សូមបញ្ចូលឈ្មោះ!',
             'dob.required' => 'សូមបញ្ចូលឈ្មោះ!',
             'role.required' => 'សូមបញ្ចូលតួនាទី!',
-            'status.required' => 'សូមបញ្ចូលស្ថានភាព!',
             'student_image.required' => 'សូមបញ្ចូលរូបភាព!',
         ]);
 
@@ -57,7 +56,7 @@ class StudentController extends Controller
             'old' => $request->old,
             'address' => $request->address,
             'role' => $request->role,
-            'status' => $request->status,
+            'status' => 1,
             'phone' => $request->phone,
             'note' => $request->note,
             // 'brand_slug_en' => strtolower(str_replace(' ', '-', $request->brand_slug_en)),
@@ -72,13 +71,13 @@ class StudentController extends Controller
 
         return redirect()->route('all.student')->with($notification);
     }
-     // edit
-     public function StudentEdit($id)
-     {
-         $student = Student::FindOrFail($id);
-         return view('Frontend-Layout.students.edit', compact('student'));
-     }
-     public function StudentUpdate(Request $request)
+    // edit
+    public function StudentEdit($id)
+    {
+        $student = Student::FindOrFail($id);
+        return view('Frontend-Layout.students.edit', compact('student'));
+    }
+    public function StudentUpdate(Request $request)
     {
         $student_id = $request->id;
         $old_img = $request->old_image;
@@ -93,7 +92,7 @@ class StudentController extends Controller
                 'old' => 'required',
                 'address' => '',
                 'role' => 'required',
-                'status' => 'required',
+                'status' => '',
                 'phone' => '',
                 'note' => '',
                 'student_image' => 'required',
@@ -101,7 +100,6 @@ class StudentController extends Controller
                 'name.required' => 'សូមបញ្ចូលឈ្មោះ!',
                 'dob.required' => 'សូមបញ្ចូលថ្ងៃ-ខែ-ឆ្នាំកំណើត!',
                 'role.required' => 'សូមបញ្ចូលតួនាទី!',
-                'status.required' => 'សូមបញ្ចូលស្ថានភាព!',
                 'student_image.required' => 'សូមបញ្ចូលរូបភាព!',
             ]);
             @unlink($old_img);
@@ -119,7 +117,7 @@ class StudentController extends Controller
                 'old' => $request->old,
                 'address' => $request->address,
                 'role' => $request->role,
-                'status' => $request->status,
+                'status' => 1,
                 'phone' => $request->phone,
                 'note' => $request->note,
                 'student_image' => $save_url,
@@ -145,7 +143,7 @@ class StudentController extends Controller
                 'old' => $request->old,
                 'address' => $request->address,
                 'role' => $request->role,
-                'status' => $request->status,
+                'status' => 1,
                 'phone' => $request->phone,
                 'note' => $request->note,
             ]);
@@ -158,6 +156,30 @@ class StudentController extends Controller
 
             return redirect()->route('all.student')->with($notification);
         }
+    }
+    // // Active
+    public function Active($id)
+    {
+        Student::findOrFail($id)->update(['status' => 0]);
+
+        //alert toastr msg
+        $notification = array(
+            'message' => "Student is Leave",
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+    // // Active
+    public function Inactive($id)
+    {
+        Student::findOrFail($id)->update(['status' => 1]);
+
+        //alert toastr msg
+        $notification = array(
+            'message' => "Student is Stay in",
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
     // Delete
     public function StudentDelete($id)

@@ -23,11 +23,10 @@ return new class extends Migration
             $table->string('old')->nullable();
             $table->string('address')->nullable();
             $table->string('role');
-            $table->string('status');
+            $table->integer('status')->default(1);
             $table->string('phone')->nullable();
             $table->string('note')->nullable();
             $table->timestamps();
-            
         });
     }
 

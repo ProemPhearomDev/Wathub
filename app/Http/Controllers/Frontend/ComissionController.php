@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Comission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Village;
 use Intervention\Image\Facades\Image;
 
 class ComissionController extends Controller
@@ -17,7 +18,8 @@ class ComissionController extends Controller
     }
     public function CreateComission()
     {
-        return view('Frontend-Layout.comissions.create');
+        $villages = Village::all();
+        return view('Frontend-Layout.comissions.create', compact('villages'));
     }
     //store data
     public function StoreComission(Request $request)
@@ -27,9 +29,9 @@ class ComissionController extends Controller
             'dob' => '',
             'gender' => '',
             'date_becam_comis' => '',
-            'address' => '',
             'role' => 'required',
-            'status' => 'required',
+            'status' => '',
+            'village_id' => 'required|numeric',
             'phone' => '',
             'note' => '',
             'comission_image' => 'required',
@@ -37,7 +39,6 @@ class ComissionController extends Controller
             'name.required' => 'សូមបញ្ចូលឈ្មោះ!',
             'dob.required' => 'សូមបញ្ចូលឈ្មោះ!',
             'role.required' => 'សូមបញ្ចូលតួនាទី!',
-            'status.required' => 'សូមបញ្ចូលស្ថានភាព!',
             'comission_image.required' => 'សូមបញ្ចូលរូបភាព!',
         ]);
 
@@ -51,10 +52,10 @@ class ComissionController extends Controller
             'dob' => $request->dob,
             'gender' => $request->gender,
             'date_becam_comis' => $request->date_becam_comis,
-            'address' => $request->address,
             'role' => $request->role,
-            'status' => $request->status,
+            'status' => 1,
             'phone' => $request->phone,
+            'village_id' => $request->village_id,
             'note' => $request->note,
             // 'brand_slug_en' => strtolower(str_replace(' ', '-', $request->brand_slug_en)),
             'comission_image' => $save_url,
@@ -71,8 +72,9 @@ class ComissionController extends Controller
     // edit
     public function ComissionEdit($id)
     {
+        $villages = Village::all();
         $comission = Comission::FindOrFail($id);
-        return view('Frontend-Layout.comissions.edit', compact('comission'));
+        return view('Frontend-Layout.comissions.edit', compact('comission','villages'));
     }
     public function ComissionUpdate(Request $request)
     {
@@ -85,9 +87,9 @@ class ComissionController extends Controller
                 'dob' => '',
                 'gender' => '',
                 'date_becam_comis' => '',
-                'address' => '',
                 'role' => 'required',
-                'status' => 'required',
+                'status' => '',
+                'village_id' => 'required|numeric',
                 'phone' => '',
                 'note' => '',
                 'comission_image' => 'required',
@@ -95,7 +97,6 @@ class ComissionController extends Controller
                 'name.required' => 'សូមបញ្ចូលឈ្មោះ!',
                 'dob.required' => 'សូមបញ្ចូលថ្ងៃ-ខែ-ឆ្នាំកំណើត!',
                 'role.required' => 'សូមបញ្ចូលតួនាទី!',
-                'status.required' => 'សូមបញ្ចូលស្ថានភាព!',
                 'comission_image.required' => 'សូមបញ្ចូលរូបភាព!',
             ]);
             @unlink($old_img);
@@ -109,10 +110,10 @@ class ComissionController extends Controller
                 'dob' => $request->dob,
                 'gender' => $request->gender,
                 'date_becam_comis' => $request->date_becam_comis,
-                'address' => $request->address,
                 'role' => $request->role,
-                'status' => $request->status,
-                'phone' => $request->phone,
+                'status' => 1,
+                'village_id' => $request->village_id,
+                'phone' =>$request->phone,
                 'note' => $request->note,
                 // 'brand_slug_en' => strtolower(str_replace(' ', '-', $request->brand_slug_en)),
                 'comission_image' => $save_url,
@@ -134,9 +135,9 @@ class ComissionController extends Controller
                 'dob' => $request->dob,
                 'gender' => $request->gender,
                 'date_becam_comis' => $request->date_becam_comis,
-                'address' => $request->address,
                 'role' => $request->role,
-                'status' => $request->status,
+                'status' => 1,
+                'village_id' => $request->village_id,
                 'phone' => $request->phone,
                 'note' => $request->note,
             ]);
@@ -149,6 +150,30 @@ class ComissionController extends Controller
 
             return redirect()->route('all.comission')->with($notification);
         }
+    }
+    // // Active
+    public function Active($id)
+    {
+        Comission::findOrFail($id)->update(['status' => 0]);
+
+        //alert toastr msg
+        $notification = array(
+            'message' => "Comission is update Successfully",
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+    // // Active
+    public function Inactive($id)
+    {
+        Comission::findOrFail($id)->update(['status' => 1]);
+
+        //alert toastr msg
+        $notification = array(
+            'message' => "Comission is update Successfully",
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
     // Delete
     public function ComissionDelete($id)

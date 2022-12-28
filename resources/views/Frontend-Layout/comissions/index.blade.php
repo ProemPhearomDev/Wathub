@@ -54,18 +54,23 @@
                                             <td>{{ $comission->gender }}</td>
                                             <td>{{ \Carbon\Carbon::parse( $comission['dob'] )->format('j \\ F Y') }}</td>
                                             <td>{{ \Carbon\Carbon::parse( $comission['date_becam_comis'] )->format('d-m-Y')}}</td>
-                                            <td>{{ $comission->address }}</td>
+                                            <td>{{ $comission->rvillage->name }}</td>
                                             <td>{{ $comission->role }}</td>
                                             <td>{{ $comission->phone }}</td>
                                             <td>
-                                                @if ($comission->status == "នៅធ្វើ")
-                                                <span class="badge badge-pill bg-success inv-badge">{{ $comission->status }}</span>
+                                                @if ($comission->status == 1)
+                                                <span class="badge badge-pill bg-success inv-badge">នៅធ្វើ</span>
                                                 @else
-                                                <span class="badge badge-pill bg-danger inv-badge">{{ $comission->status }}</span>
+                                                <span class="badge badge-pill bg-danger inv-badge">ឈប់ធ្វើ</span>
                                                 @endif
                                             </td>
                                             <td>{{ $comission->note }}</td>
                                             <td class="text-right" >
+                                                @if ($comission->status == 1)
+                                                <a href="{{ route('comission.active', $comission->id) }}"  class="btn btn-sm btn-oval btn-success mx-2"  title="Inactive Now"><i class="fa fa-eye"></i></a> 
+                                                @else
+                                                <a href="{{ route('comission.inactive', $comission->id) }}"  class="btn btn-sm btn-oval btn-danger mx-2" title="Active Now"><i class="fa fa-eye-slash"></i></a> 
+                                                @endif
                                                 <a href="{{ route('comission.edit', $comission->id) }}" class="btn btn-primary btn-sm mb-1">
                                                     <i class="fe fe-edit"></i>
                                                 </a>

@@ -11,7 +11,8 @@ class Expense extends Model
     protected $fillable = [
         'expense_name',
         'date_expense',
-        'amounts',
+        'amounts_kh',
+        'amounts_usd',
         'note',
     ];
 }

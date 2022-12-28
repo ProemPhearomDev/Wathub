@@ -67,17 +67,21 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>ប្រាក់ខ្មែរ</label>
-                                                <input type="text" class="form-control" id="amount_riels"
-                                                    name="amount_riels" value="{{ old('amount_riels') }}" placeholder="រៀល">
+                                            <label class="input-group" for="">ចំនួនប្រាក់រៀល</label>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">៛</span>
+                                                <input type="text" class="form-control" name="amount_riels"
+                                                    value="{{ old('amount_riels ') }}">
+                                                <span class="input-group-text">.00</span>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>ប្រាក់ដុល្លា</label>
-                                                <input type="text" class="form-control" id="amount_usd" name="amount_usd"
-                                                    value="{{ old('amount_usd') }}" placeholder="$">
+                                            <label class="input-group" for="">ចំនួនប្រាក់ដុល្លា</label>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">$</span>
+                                                <input type="text" class="form-control" name="amount_usd"
+                                                    value="{{ old('amount_usd ') }}">
+                                                <span class="input-group-text">.00</span>
                                             </div>
                                         </div>
                                     </div>

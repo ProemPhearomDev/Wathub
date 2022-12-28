@@ -119,19 +119,6 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>ស្ថានភាព<span class="text-danger">*</span></label>
-                                    <select class="form-control select" name="status" id="status">
-                                        <option selected value="">ជ្រើសរើសស្ថានភាព </option>
-                                        <option>ស្នាក់នៅ</option>
-                                        <option>ចាកចេញ</option>
-                                    </select>
-                                    @error('status')
-                                    <div class="form-error text-danger">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
                                     <label>លេខទូរស័ព្ទ</label>
                                     <input type="text" class="form-control" id="phone" name="phone"
                                         value="{{ old('phone') }}"  placeholder="បញ្ចូលលេខទូរស័ព្ទ">

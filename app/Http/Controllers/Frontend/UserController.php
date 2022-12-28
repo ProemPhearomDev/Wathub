@@ -6,7 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Model; 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
+
 class UserController extends Controller
 {
     //
@@ -17,12 +19,78 @@ class UserController extends Controller
         return view('Frontend-Layout.users.index', compact('users'))->with('i');
     }
     // add user
-    public function CreateUser(){
+    public function CreateUser()
+    {
         return view('Frontend-Layout.users.create');
     }
+    public function StoreUser(Request $request)
+    {
+        $request->validate([
+            'name'  => 'required|unique:users|max:255',
+            'email' => 'required|email|unique:users|max:255',
+            'phone' => '',
+            'password' => 'required|confirmed|min:6',
+            'profile_photo_path' => '',
+        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        if ($request->file('profile_photo_path')) {
+            // remove old image if have
+            $file = $request->file('profile_photo_path');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/user_img'), $filename);
+            $user['profile_photo_path'] = $filename;
+        }
+        $user->save();
+        //alert toast msg
+        $notification = array(
+            'message' => "User Profile Updated Successfully",
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.user')->with($notification);
+    }
+    // add user
+    public function UserEdit($id)
+    {
+        $user = User::find($id);
+        return view('Frontend-Layout.users.edit', compact('user'));
+    }
+    public function UserUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'name'  => 'required|unique:users|max:255',
+            'email' => 'required|email|unique:users|max:255',
+            'phone' => '',
+            // 'password' => 'required|min:6',
+            'profile_photo_path' => '',
+        ]);
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        // $user->password = Hash::make($request->password);
+        // $user->password = Hash::make($request->password);
+        if ($request->file('profile_photo_path')) {
+            // remove old image if have
+            $file = $request->file('profile_photo_path');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $user['profile_photo_path'] = $filename;
+        }
+        $user->update();
+        //alert toast msg
+        $notification = array(
+            'message' => "User Profile Updated Successfully",
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.user')->with($notification);
+    }
     //DELETE
-    public function UserDelete($id){
-       
+    public function UserDelete($id)
+    {
+
         $users = User::findOrFail($id);
         $img = $users->image;
         // remove image
@@ -32,12 +100,12 @@ class UserController extends Controller
             // delte brand
             $users = User::findOrFail($id)->delete();
             //alert toast msg
-        $notification = array(
-            'message' => "User Deleted Successfully",
-            'alert-type' => 'success'
-        );
+            $notification = array(
+                'message' => "User Deleted Successfully",
+                'alert-type' => 'success'
+            );
 
-        return redirect()->back()->with($notification);
+            return redirect()->back()->with($notification);
         }
     }
     // User function 
@@ -59,19 +127,19 @@ class UserController extends Controller
                             <h2 class="table-avatar">
                                 <a href="#" class="avatar avatar-sm mr-2"><img
                                         class="avatar-img rounded-circle"
-                                        src="'. url('upload/user_img/' . $user->profile_photo_path).'"
+                                        src="' . url('upload/user_img/' . $user->profile_photo_path) . '"
                                         alt="User Image"></a>
                             </h2>
                         </td>
-                        <td>'.  $user->name .'</td>
-                        <td>'.$user->email. ' </td>
-                        <td> '. $user->phone .' </td>
-                        <td>'. \Carbon\Carbon::parse($user['created_at'])->format('j \\ F Y') 
-                        .'</td>
+                        <td>' .  $user->name . '</td>
+                        <td>' . $user->email . ' </td>
+                        <td> ' . $user->phone . ' </td>
+                        <td>' . \Carbon\Carbon::parse($user['created_at'])->format('j \\ F Y')
+                    . '</td>
                         <td class="text-right">
                             <div class="actions">
                                 <!-- Delete -->
-                                <a href="'. route('user.delete', $user->id) .'"
+                                <a href="' . route('user.delete', $user->id) . '"
                                     class="btn btn-sm bg-danger-light" id="delete">
                                     <i class="fe fe-trash"></i> Delete
                                 </a>

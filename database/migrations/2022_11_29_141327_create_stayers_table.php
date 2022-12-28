@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('role');
             $table->string('phone')->nullable();
-            $table->string('status');
+            $table->integer('status')->default(1);
             $table->string('note')->nullable();
             $table->timestamps();
         });

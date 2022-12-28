@@ -14,10 +14,13 @@ class Comission extends Model
         'dob',
         'gender',
         'date_becam_comis',
-        'address',
         'role',
         'status',
+        'village_id',
         'phone',
         'note',
     ];
+    public function rvillage(){
+        return $this->belongsTo(Village::class,'village_id');
+    }
 }

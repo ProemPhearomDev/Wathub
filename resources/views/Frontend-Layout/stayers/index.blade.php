@@ -62,14 +62,19 @@
                                             <td>{{ $stayer->role }}</td>
                                             <td>{{ $stayer->phone }}</td>
                                             <td>
-                                                @if ($stayer->status  == "ស្នាក់នៅ")
-                                                <span class="badge badge-pill bg-success inv-badge">{{ $stayer->status }}</span>
+                                                @if ($stayer->status == 1)
+                                                <span class="badge badge-pill bg-success inv-badge">ស្នាក់នៅ</span>
                                                 @else
-                                                <span class="badge badge-pill bg-danger inv-badge">{{ $stayer->status }}</span>
+                                                <span class="badge badge-pill bg-danger inv-badge">ចាកចេញ</span>
                                                 @endif
                                             </td>
                                             <td>{{ $stayer->note }}</td>
                                             <td class="text-right" >
+                                                @if ($stayer->status == 1)
+                                                <a href="{{ route('stayer.active', $stayer->id) }}"  class="btn btn-sm btn-oval btn-success mx-2" ><i class="fa fa-eye"></i></a> 
+                                                @else
+                                                <a href="{{ route('stayer.inactive', $stayer->id) }}"  class="btn btn-sm btn-oval btn-danger mx-2"><i class="fa fa-eye-slash"></i></a> 
+                                                @endif
                                                 <a href="{{ route('stayer.edit', $stayer->id) }}" class="btn btn-primary btn-sm mb-1">
                                                     <i class="fe fe-edit"></i>
                                                 </a>

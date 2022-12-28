@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('dob')->nullable();
             $table->string('gender')->nullable();
             $table->string('date_becam_comis')->nullable();
-            $table->string('address')->nullable();
             $table->string('role');
             $table->string('phone')->nullable();
-            $table->string('status');
+            $table->integer('status')->default(1);
+            $table->integer('village_id');
             $table->string('note')->nullable();
             $table->timestamps();
         });

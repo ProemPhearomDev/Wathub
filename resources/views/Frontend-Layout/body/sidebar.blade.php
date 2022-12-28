@@ -4,7 +4,7 @@
                 <div id="sidebar-menu" class="sidebar-menu">
                     <ul>
                         <li class="menu-title">
-                            <span>Main</span>
+                            <span>ប្រព័ន្ធគ្រប់គ្រប់វត្តហប់</span>
                         </li>
                         <li id="menu_setting_dashboard">
                             <a href="{{ url('/dashboard') }}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
@@ -27,7 +27,7 @@
                                 <span>គណៈកម្មការ</span></a>
                         </li>
                         <li id="menu_setting_all_invite">
-                            <a href=""><i class="fe fe-bookmark"></i> <span>ការនិមន្តបុណ្យ</span></a>
+                            <a href="{{ route('all.invite') }}"><i class="fe fe-bookmark"></i> <span>ការនិមន្តបុណ្យ</span></a>
                         </li>
                         <li id="menu_setting_money">
                             <a href="#"><i class="fe fe-book"></i> <span>កត់ត្រាបច្ច័យ</span> <span

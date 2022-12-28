@@ -29,8 +29,8 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     <!--datatable-->
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css"> --}}
-    <link rel="stylesheet" type="text/css" href="{{ asset('Frontend/assets/DataTables/datatables.min.css') }}"/>
-    
+    <link rel="stylesheet" type="text/css" href="{{ asset('Frontend/assets/DataTables/datatables.min.css') }}" />
+
     <!--[if lt IE 9]>
    <script src="assets/js/html5shiv.min.js"></script>
    <script src="assets/js/respond.min.js"></script>
@@ -74,6 +74,9 @@
     <!-- datatable local script -->
     <script type="text/javascript" src="{{ asset('Frontend/assets/DataTables/datatables.min.js') }}"></script>
 
+    <!-- multi select script -->
+    <script type="text/javascript" src="{{ asset('Frontend/assets/multiselect-dropdown.js') }}"></script>
+
     <!-- toast alert script -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <!--Toast alert-->
@@ -107,8 +110,8 @@
             var link = $(this).attr("href");
             //
             Swal.fire({
-                title: 'Are you sure want to this record?',
-                text: "You won't be able to revert this!!",
+                title: 'តើអ្នកប្រាកដជាចង់លុបមែនឬទេ?',
+                // text: "សូមធ្វើការបញ្ជាក់!",
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -117,11 +120,11 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = link //return route 
-                    Swal.fire(
-                        'Deleted!',
-                        'The file has been deleted.',
-                        'success'
-                    )
+                    // Swal.fire(
+                    //     'Deleted!',
+                    //     'The file has been deleted.',
+                    //     'success'
+                    // )
                 }
             })
         });
@@ -157,7 +160,13 @@
 
         // datatable
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('#example').DataTable({
+                "language": {
+                    search: 'ស្វែងរក',
+                    searchPlaceholder: ' Type here to search...',
+                }
+            });
+
         });
     </script>
 </body>

@@ -5,15 +5,16 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Monk;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class IndexController extends Controller
 {
     //
-    public function index(){
-        return view('Frontend-Layout.index');
-    }
+    // public function index(){
+    //     return view('Frontend-Layout.index');
+    // }
 
     public function UserLogout(){
         Auth::logout();
@@ -27,9 +28,10 @@ class IndexController extends Controller
     //     return redirect()->route('register');
     // }
     // UserProfile
-    public function UserProfile(){
+    public function UserProfile($id){
         $id = Auth::user()->id;
         $user = User::find($id);
+        // $user = User::find(Auth::user()->id);
         
         return view('Frontend-Layout.profile.user_profile_view', compact('user'));
     }
@@ -93,4 +95,5 @@ class IndexController extends Controller
            
         }
     }
+  
 }

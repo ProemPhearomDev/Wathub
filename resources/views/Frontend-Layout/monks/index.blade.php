@@ -62,16 +62,21 @@
                                             <td>{{ $monk->phone }}</td>
                                             {{-- <td>{{ $monk->status }}</td> --}}
                                             <td>
-                                                @if ($monk->status == "ស្នាក់នៅ")
-                                                    <span class="badge badge-pill bg-success inv-badge">{{ $monk->status }}</span>
-                                                @elseif ($monk->status == "ចេញរៀន")
-                                                    <span class="badge badge-pill bg-warning inv-badge">{{ $monk->status }}</span>
+                                                @if ($monk->status == 1)
+                                                    <span class="badge badge-pill bg-success inv-badge">ស្នាក់នៅ</span>
+                                                {{-- @elseif ($monk->status == "ចេញរៀន")
+                                                    <span class="badge badge-pill bg-warning inv-badge">{{ $monk->status }}</span> --}}
                                                 @else
-                                                    <span class="badge badge-pill bg-danger inv-badge">{{ $monk->status }}</span>
+                                                    <span class="badge badge-pill bg-danger inv-badge">ចាកចេញ</span>
                                                 @endif
                                             </td>
                                             <td>{{ $monk->note }}</td>
                                             <td class="text-right" >
+                                                @if ($monk->status == 1)
+                                                <a href="{{ route('monk.active', $monk->id) }}"  class="btn btn-sm btn-oval btn-success mx-2"  title="Inactive Now"><i class="fa fa-eye"></i></a> 
+                                                @else
+                                                <a href="{{ route('monk.inactive', $monk->id) }}"  class="btn btn-sm btn-oval btn-danger mx-2" title="Active Now"><i class="fa fa-eye-slash"></i></a> 
+                                                @endif
                                                 <a href="{{ route('monk.edit', $monk->id) }}" class="btn btn-primary btn-sm mb-1">
                                                     <i class="fe fe-edit"></i>
                                                 </a>
@@ -80,7 +85,6 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                        
                                     @endforeach
 
                                 </tbody>

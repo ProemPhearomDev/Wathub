@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <!-- /Page Header -->
-                    <form class="register-form outer-top-xs " method="POST" action="{{ route('register') }}">
+                    <form class="register-form outer-top-xs " method="POST" action="{{ route('store.user') }}">
                         @csrf
                         <div class="form-group">
                             <input type="text" class="form-control unicase-form-control text-input"
@@ -56,6 +56,13 @@
                             <input type="password" class="form-control unicase-form-control text-input"
                                 id="password_confirmation" name="password_confirmation" placeholder="Password Confirmation">
                             @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <input type="file" class="form-control unicase-form-control text-input"
+                                id="profile_photo_path" name="profile_photo_path" placeholder="រូបភាពអ្នកប្រើប្រាស់">
+                            @error('profile_photo_path')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
                         </div>

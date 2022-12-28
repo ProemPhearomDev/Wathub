@@ -9,16 +9,31 @@ use App\Http\Controllers\Controller;
 
 class IncomeController extends Controller
 {
-    public function ViewIncome()
+    // public function index()
+    // {
+    //     $income_total = DB::table('incomes')->sum('amount_riels');
+    //     //Add the $opened_counts variable to the compact function
+    //     return view('Frontend-Layout.incomes.index', compact(
+    //         'income_total', 
+    //     ));
+    // }
+    public function ViewIncome(Request $request)
     {
         $incomes = Income::latest()->get();
-        return view('Frontend-Layout.incomes.index', compact('incomes'))->with('i');
+        $income_khtotal = DB::table('incomes')->sum('amount_riels');
+        $income_usdtotal = DB::table('incomes')->sum('amount_usd');
+        // $data = Income::select(DB::raw("SUM(amount_riels) as count"))
+        //     ->orderBy("created_at")
+        //     ->groupBy(DB::raw("year(created_at)"))
+        //     ->get();
+
+        return view('Frontend-Layout.incomes.index', compact('incomes','income_khtotal','income_usdtotal'))->with('i');
     }
+
     public function CreateIncome()
     {
         return view('Frontend-Layout.incomes.create');
     }
-    //store data
     public function StoreIncome(Request $request)
     {
         $request->validate([

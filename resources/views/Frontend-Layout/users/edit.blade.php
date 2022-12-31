@@ -28,8 +28,6 @@
                     <form class="register-form outer-top-xs " method="POST" action="{{ route('user.update', $user->id) }}"
                         enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="id" value="{{ $user->id }}">
-
                         <div class="form-group">
                             <input type="text" class="form-control unicase-form-control text-input"
                                 value="{{ $user->name }}" id="name" name="name" placeholder="Name">
@@ -42,7 +40,7 @@
                             <input type="text" class="form-control unicase-form-control text-input"
                                 value="{{ $user->phone }}" id="phone" name="phone" placeholder="Phone">
                         </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <input type="password" class="form-control unicase-form-control text-input"
                                 id="password" name="password" placeholder="Password">
                             @error('password')
@@ -55,7 +53,7 @@
                             @error('password_confirmation')
                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                             @enderror
-                        </div> --}}
+                        </div>
                         <div class="form-group">
                             <div class="text-center border-0 mt-4 px-2 w-25 mx-auto ">
                                 <img src="{{ !empty($user->profile_photo_path)

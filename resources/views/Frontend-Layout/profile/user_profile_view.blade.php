@@ -10,7 +10,7 @@
                      <div class="col">
                          <h3 class="page-title">Profile</h3>
                          <ul class="breadcrumb">
-                             <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                             <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">ទំព័រដើម</a></li>
                              <li class="breadcrumb-item active">Profile</li>
                          </ul>
                      </div>
@@ -162,7 +162,7 @@
                                  <div class="col-lg-3">
 
                                      <!-- Account Status -->
-                                     <div class="card">
+                                     {{-- <div class="card">
                                          <div class="card-body">
                                              <h5 class="card-title d-flex justify-content-between">
                                                  <span>Account Status</span>
@@ -172,7 +172,7 @@
                                              <button class="btn btn-success" type="button"><i
                                                      class="fe fe-check-verified"></i> Active</button>
                                          </div>
-                                     </div>
+                                     </div> --}}
                                      <!-- /Account Status -->
 
                                      <!-- Skills -->

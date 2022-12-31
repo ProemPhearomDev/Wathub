@@ -9,8 +9,8 @@
                     <div class="col">
                         <h3 class="page-title">អ្នកប្រើប្រាស់</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Users</li>
+                            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">ទំព័រដើម</a></li>
+                            <li class="breadcrumb-item active">ការប្រើប្រាស់</li>
                         </ul>
                     </div>
                 </div>

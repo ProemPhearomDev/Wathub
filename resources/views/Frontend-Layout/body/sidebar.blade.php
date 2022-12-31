@@ -7,7 +7,7 @@
                             <span>ប្រព័ន្ធគ្រប់គ្រប់វត្តហប់</span>
                         </li>
                         <li id="menu_setting_dashboard">
-                            <a href="{{ url('/dashboard') }}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                            <a href="{{ url('/dashboard') }}"><i class="fe fe-home"></i> <span>ទំព័រដើម</span></a>
                         </li>
                         {{-- <li>
                             <a href="{{ route('user.profile') }}"><i class="fe fe-user-plus"></i> <span>Profile</span></a>
@@ -48,9 +48,9 @@
                                 <li id="menu_manage_settings">
                                     <a href="{{ route('all.village') }}"><span>បញ្ជីភូមិ</span></a>
                                 </li>
-                                <li id="menu_manage_settings">
+                                {{-- <li id="menu_manage_settings">
                                     <a href=""> <span>ការកំណត់ចំនួន</span></a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
 

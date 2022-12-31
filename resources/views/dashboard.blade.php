@@ -11,7 +11,7 @@
                     <div class="col-sm-12">
                         <h3 class="page-title">Welcome <strong>{{ Auth::user()->name }}</strong>!</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">ទំព័រដើម</li>
                         </ul>
                     </div>
                 </div>

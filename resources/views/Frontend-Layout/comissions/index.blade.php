@@ -9,8 +9,8 @@
                     <div class="col">
                         <h3 class="page-title">តារាងព័ត៌មានរបស់គណៈកម្មការវត្ត </h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Student</li>
+                            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">ទំព័រដើម</a></li>
+                            <li class="breadcrumb-item active">គណៈកម្មការ</li>
                         </ul>
                     </div>
                 </div>

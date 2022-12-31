@@ -29,12 +29,13 @@ class UserController extends Controller
             'name'  => 'required|unique:users|max:255',
             'email' => 'required|email|unique:users|max:255',
             'phone' => '',
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|confirmed|min:8',
             'profile_photo_path' => '',
         ]);
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
         if ($request->file('profile_photo_path')) {
             // remove old image if have
@@ -64,13 +65,14 @@ class UserController extends Controller
             'name'  => 'required|unique:users|max:255',
             'email' => 'required|email|unique:users|max:255',
             'phone' => '',
-            // 'password' => 'required|min:6',
+            'password' => 'required|confirmed|min:8',
             'profile_photo_path' => '',
         ]);
-        $user = User::find($id);
+        $user = User::FindOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        // $user->password = Hash::make($request->password);
+        $user->phone = $request->phone;
+        $user->password = Hash::make($request->password);
         // $user->password = Hash::make($request->password);
         if ($request->file('profile_photo_path')) {
             // remove old image if have
@@ -81,7 +83,7 @@ class UserController extends Controller
         $user->update();
         //alert toast msg
         $notification = array(
-            'message' => "User Profile Updated Successfully",
+            'message' => "User Updated Successfully",
             'alert-type' => 'success'
         );
 

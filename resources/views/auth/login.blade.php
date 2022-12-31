@@ -36,8 +36,8 @@
                     <div class="login-right">
                         <div class="login-right-wrap">
                             <h1>Login</h1>
-                            <p class="account-subtitle">Access to our System</p>
-                            {{-- <p class="account-subtitle">ចូលប្រើប្រាស់ប្រព័ន្ធគ្រប់គ្រង</p> --}}
+                            {{-- <p class="account-subtitle">Access to our System</p> --}}
+                            <p class="account-subtitle">ចូលប្រើប្រាស់ប្រព័ន្ធគ្រប់គ្រង</p>
                             <!-- Form -->
                             <form class="register-form outer-top-xs" method="POST"
                                 action="{{ isset($guard) ? url($guard . '/login') : route('login') }}">

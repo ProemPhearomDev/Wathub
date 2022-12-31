@@ -28,10 +28,10 @@ class IndexController extends Controller
     //     return redirect()->route('register');
     // }
     // UserProfile
-    public function UserProfile($id){
-        $id = Auth::user()->id;
-        $user = User::find($id);
-        // $user = User::find(Auth::user()->id);
+    public function UserProfile(){
+        // $id = Auth::user()->id;
+        // $user = User::find($id);
+        $user = User::find(Auth::user()->id);
         
         return view('Frontend-Layout.profile.user_profile_view', compact('user'));
     }

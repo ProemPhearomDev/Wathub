@@ -9,7 +9,7 @@
                     <div class="col">
                         <h3 class="page-title">ព័ត៌មានរបស់អ្នកស្នាក់នៅក្នុងវត្តបច្ចុប្បន្ន </h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">ទំព័រដើម</a></li>
                             <li class="breadcrumb-item active">Stayer</li>
                         </ul>
                     </div>

@@ -9,7 +9,7 @@
                     <div class="col">
                         <h3 class="page-title">តារាងគ្រប់គ្រងបច្ច័យដែលញាតិញោមបានប្រគេនវត្ត </h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">ទំព័រដើម</a></li>
                             <li class="breadcrumb-item active">ចំណូល</li>
                         </ul>
                     </div>
